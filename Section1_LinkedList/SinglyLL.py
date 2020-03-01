@@ -82,12 +82,28 @@ def kthToLast(head, k):
 
     return p2  # Once p1 has reached the end of the list, we will return p2 (kth to last element)
 
+# Deleting a node without a refrence to the head pointer
+
+def deleteNode(tgt_node):
+    if tgt_node is None or tgt_node.next is None:
+        return False
+    next_node = tgt_node.next
+    tgt_node.value = next_node.value
+    tgt_node.next = next_node.next
+    return True
+
 
 LinkedList = SinglyLinkedList()
-for i in range(9000):
+for i in range(10):
     LinkedList.append(i)
 
 print("Singly Linked List Length is: ", LinkedList.length())
+kthElement = kthToLast(LinkedList.tail, 1)
+tgt_node = LinkedList.tail.next.next.next.next.next.next
 
-kthElement = kthToLast(LinkedList.tail, 176)
-print(kthElement.value)
+print("Deleting", tgt_node.value)
+if deleteNode(tgt_node):
+    print("Successfully removed")
+
+for i in LinkedList.iter():
+    print(i)
