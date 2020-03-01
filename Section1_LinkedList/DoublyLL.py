@@ -30,3 +30,21 @@ b.prev = a
 # Output: 10 1
 
 # Now lets start implementing the class ..
+
+class DoublyLinkedList:
+    def __init__(self):
+        # We initialize a refrence for both head and tail
+        self.head = None
+        self.tail = None
+        self.size = 0  # And keep track of the length of our DLL
+
+    def append(self, data):
+        node = Node(data)
+        if self.head is None:
+            self.head = node
+            self.tail = self.head
+        else:
+            node.prev = self.tail
+            self.tail.next = node
+            self.tail = node
+            self.size +=1
