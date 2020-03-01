@@ -37,9 +37,11 @@ c.next = d  # c -> d
 class SinglyLinkedList:
     def __init__(self):
         self.tail = None  # We will always start of with a tail reference and assuming of course that its None
+        self.size = 0
 
     # Our first operation will be .append()
     def append(self, data):
+        self.size += 1
         # We take our data and assign it to our Node
         node = Node(data)
         if self.tail is None:
@@ -51,10 +53,14 @@ class SinglyLinkedList:
 
             current.next = node  # Once Null object is found, assign it with our new nodes
 
+    def length(self):
+        return self.size
+
 
 LinkedList = SinglyLinkedList()
 LinkedList.append(5)  # Lets test it out by appending these data points
 LinkedList.append(10)
+LinkedList.append(40)
 
 current = LinkedList.tail  # To iterate, start with an entry point
 
@@ -62,4 +68,4 @@ while current:
     print(current.value)  # Print out the value while continuously calling the .next()
     current = current.next
 # That is a lot better than just continuously calling .next() operator manually.
-
+print("Length is: ", LinkedList.length())
