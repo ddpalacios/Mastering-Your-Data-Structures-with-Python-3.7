@@ -56,6 +56,13 @@ class SinglyLinkedList:
     def length(self):
         return self.size
 
+    def iter(self):
+        current = self.tail
+        while current:
+            value = current.value # get the value while continuously calling the .next()
+            current = current.next
+            yield value
+
 
 LinkedList = SinglyLinkedList()
 LinkedList.append(5)  # Lets test it out by appending these data points
@@ -63,9 +70,8 @@ LinkedList.append(10)
 LinkedList.append(40)
 
 current = LinkedList.tail  # To iterate, start with an entry point
-
-while current:
-    print(current.value)  # Print out the value while continuously calling the .next()
-    current = current.next
 # That is a lot better than just continuously calling .next() operator manually.
+
+for value in LinkedList.iter():
+    print(value)
 print("Length is: ", LinkedList.length())
