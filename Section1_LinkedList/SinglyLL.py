@@ -59,19 +59,35 @@ class SinglyLinkedList:
     def iter(self):
         current = self.tail
         while current:
-            value = current.value # get the value while continuously calling the .next()
+            value = current.value  # get the value while continuously calling the .next()
             current = current.next
             yield value
 
 
+# RUNNER TECHNIQUE (If a certain way works multiple times, we call it a technique... and in this case, this is one
+# example)
+# Finding the kth last element  in the linked list
+def kthToLast(head, k):
+    p1 = head  # Keep 2 pointers at a starting point
+    p2 = head
+
+    for i in range(k):  # Move p1 k times
+        if p1 is None:
+            return  # Check if it is empty first
+        p1 = p1.next  # Move pointer
+
+    while p1 is not None:  # After moving pointer, we are going to iterate until p1 reaches end of list
+        p1 = p1.next  # We are moving both pointers simultaneously
+        p2 = p2.next
+
+    return p2  # Once p1 has reached the end of the list, we will return p2 (kth to last element)
+
+
 LinkedList = SinglyLinkedList()
-LinkedList.append(5)  # Lets test it out by appending these data points
-LinkedList.append(10)
-LinkedList.append(40)
+for i in range(9000):
+    LinkedList.append(i)
 
-current = LinkedList.tail  # To iterate, start with an entry point
-# That is a lot better than just continuously calling .next() operator manually.
+print("Singly Linked List Length is: ", LinkedList.length())
 
-for value in LinkedList.iter():
-    print(value)
-print("Length is: ", LinkedList.length())
+kthElement = kthToLast(LinkedList.tail, 176)
+print(kthElement.value)
