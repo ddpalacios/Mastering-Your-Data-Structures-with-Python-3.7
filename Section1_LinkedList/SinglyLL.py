@@ -53,10 +53,13 @@ class SinglyLinkedList:
 
 
 LinkedList = SinglyLinkedList()
-LinkedList.append(5)
+LinkedList.append(5)  # Lets test it out by appending these data points
 LinkedList.append(10)
-current = LinkedList.tail  # Start with an entry point
+
+current = LinkedList.tail  # To iterate, start with an entry point
 
 while current:
-    print(current.value)
+    print(current.value)  # Print out the value while continuously calling the .next()
     current = current.next
+# That is a lot better than just continuously calling .next() operator manually.
+
