@@ -37,6 +37,35 @@ class Stack:
         self.size+=1 # Increment length
 
 
+
+    def pop(self, data):
+        # To implement pop() first check is empty. (pop is not allows on an empty stack)
+        if self.top:
+            # if its not empty, it can be checked if the top node has its
+            data = self.top.data
+            self.size -=1
+            if self.top.next:
+                # NEXT attribute pointing to some other node in the stack
+                # We have to change the top pointer.
+                # The NEXT node should be at the top
+                # Point self.top to self.top.next
+                self.top = self.top.next
+            else:
+                self.top = None
+            return data
+
+        else:
+            return None
+
         
+
+
+
+
+
+
+
+
+
 
 
