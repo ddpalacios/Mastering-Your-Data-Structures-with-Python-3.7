@@ -31,8 +31,14 @@ n1.left_child = n2
 n1.right_child = n3
 n2.left_child = n4
 
+# Notice that we are iterating through only one side of the tree
+# Could we possibly traverse through the entire tree?
 current = n1
 while current:
-    print(current.data)
+    # print(current.data)
     current = current.left_child
 
+# This is where tree traveral comes into place.
+# And this can be done eaither:
+# - Depth-first search (DFS)
+# - Breadth-first search
