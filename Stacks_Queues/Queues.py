@@ -60,3 +60,55 @@ queue.dequeue()
 # print(queue.outbound_stack) # Output: [7]
 
 
+# Node Based Queues implementation
+
+# A queue can be implemnted using a doubly linked likst, and insertaion and deletion operation on this data structure
+# Has complexity of O(1)
+
+# A Double Linked list can be treated as a queue if it enables a FIFO kind of data access
+
+# So lets once again, Start of with a node class just like a doubly linked list
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        self.prev = None
+
+class NodeQueue:
+    def __init__(self):
+        self.head = None
+        self.tail = None
+        self.size = 0
+
+    # Enqueue operation
+    # The enqueue method is similar to the append operation of doubly linked list
+    # It creates a node from the data passed to it and appends it to the tail aof the queue
+    # and points both head and tail to the newly created node if the queue is empty
+    def enqueue(self, data):
+        new_node = Node(data)
+        if self.head is None:
+            self.head = new_node
+            self.tail = self.head
+        else:
+            new_node.prev = self.tail
+            self.tail.next = new_node
+            self.tail = new_node
+        self.size+=1
+
+    # Dequeue operation
+    # This method removes the node at the front of the queue.
+    # to remove the first element pointed to by self.head, an if statement is used:
+    def dequue(self):
+        current = self.head
+        if self.size == 1:
+            self.size -=1
+            self.head = None
+            self.tail = None
+        elif self.size > 1:
+            self.head = self.head.next
+            self.head.prev = None
+            self.size -= 1
+
+
+
+
