@@ -37,8 +37,7 @@ class Stack:
         self.size+=1 # Increment length
 
 
-
-    def pop(self, data):
+    def pop(self):
         # To implement pop() first check is empty. (pop is not allows on an empty stack)
         if self.top:
             # if its not empty, it can be checked if the top node has its
@@ -57,7 +56,6 @@ class Stack:
         else:
             return None
 
-
 # opetaion to view top of stack without deleting it from the stack
     def peek(self):
         if self.top:
@@ -68,6 +66,36 @@ class Stack:
 
 
 
+
+# Lets see how we can use the Stack operation to our benifit
+# Bracket matching application
+def check_brackers(statement):
+    stack  = Stack()
+    for each_char in statement:
+        current_char = each_char
+        if current_char in ('{', '[', '('):
+            stack.push(current_char)
+            print("Pushed", current_char)
+        print(current_char)
+        if current_char in ('}', ']', ')'):
+            last = stack.pop()
+            print("Popped", current_char)
+            if last is '[' and current_char is ']':
+                continue
+            elif last is '{' and current_char is '}':
+                continue
+            elif last is '(' and current_char is ')':
+                continue
+            else:
+                return False
+    if stack.size > 0:
+        return False
+    else:
+        return True
+
+
+statement  = '{[Hello there My name is ]}'
+print(check_brackers(statement))
 
 
 
