@@ -1,11 +1,12 @@
 # Tree Nodes
-# Tree data structures are non linear data structures that store data items in an non-linear order
-# a data item can be connectrd to more than on data item.
-# In the linear data structures, all of the data items in the linear data can be
-# traversed in on pass
-# This is NOT possiblr in the case of a nonlinear data structure.
-
 '''
+Tree data structures are non linear data structures that store data items in an non-linear order
+a data item can be connectrd to more than on data item.
+In the linear data structures, all of the data items in the linear data can be
+traversed in on pass
+This is NOT possible in the case of a nonlinear data structure.
+
+
 First we will discuss one of most importnt and special inda of trees available,
 that is, the BINARY TREE. (A collection of nodes wwhere the nodes in the tree can have 0,1,or 2 child nodes)
 A simple binary tree has a maximum of 2 children. (left and right child)
@@ -42,3 +43,38 @@ while current:
 # And this can be done eaither:
 # - Depth-first search (DFS)
 # - Breadth-first search
+# we will first go over the three types of Depth first search:
+'''
+- in-order
+- pre-order
+- post order
+'''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
