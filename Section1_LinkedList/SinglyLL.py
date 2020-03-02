@@ -83,8 +83,8 @@ def kthToLast(head, k):
     return p2  # Once p1 has reached the end of the list, we will return p2 (kth to last element)
 
 # Deleting a node without a refrence to the head pointer
-
 def deleteNode(tgt_node):
+
     if tgt_node is None or tgt_node.next is None:
         return False
     next_node = tgt_node.next
