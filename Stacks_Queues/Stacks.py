@@ -57,7 +57,14 @@ class Stack:
         else:
             return None
 
-        
+
+# opetaion to view top of stack without deleting it from the stack
+    def peek(self):
+        if self.top:
+            return self.top.data
+        else:
+            return None
+
 
 
 
