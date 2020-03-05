@@ -63,6 +63,27 @@ class SinglyLinkedList:
             current = current.next
             yield value
 
+    def delete(self, tgt_data):
+        # We want to delelte a node that is btwn two other nodes, all we have to
+        # do is make the prev node to the successor of its next node that is to
+        # be deleted.
+        current = self.tail # We use current var in order to find our target data
+        prev = self.tail  # Two pointers as starting point. Current and previous
+        while current is not None:  # While there is data in the current node
+
+            if current.data == tgt_data:  # if we found our target from our current node
+                if current == self.tail:  # if the current node is our beginning tail node (First node)
+                    self.tail = current.next  # then we want our tail to be the next preceding node as our tail instead
+                else:
+                    prev.next = current.next  # If its not, our previous node will point to the node of the current node
+                self.size -= 1  # decrement our LL size
+                return  # Return none
+
+            # Continue iterating and updating our variables
+            prev = current  # The current node is now set to be a prev node
+            current = current.next  # the next node after the current one (This is just simple LL iteration)
+            # Time complexity of deleting this node is O(n)
+
 
 # RUNNER TECHNIQUE (If a certain way works multiple times, we call it a technique... and in this case, this is one
 # example)
@@ -82,9 +103,9 @@ def kthToLast(head, k):
 
     return p2  # Once p1 has reached the end of the list, we will return p2 (kth to last element)
 
+
 # Deleting a node without a refrence to the head pointer
 def deleteNode(tgt_node):
-
     if tgt_node is None or tgt_node.next is None:
         return False
     next_node = tgt_node.next
@@ -94,16 +115,8 @@ def deleteNode(tgt_node):
 
 
 LinkedList = SinglyLinkedList()
-for i in range(10):
+for i in range(100):
     LinkedList.append(i)
 
 print("Singly Linked List Length is: ", LinkedList.length())
 kthElement = kthToLast(LinkedList.tail, 1)
-tgt_node = LinkedList.tail.next.next.next.next.next.next
-
-print("Deleting", tgt_node.value)
-if deleteNode(tgt_node):
-    print("Successfully removed")
-
-for i in LinkedList.iter():
-    print(i)
