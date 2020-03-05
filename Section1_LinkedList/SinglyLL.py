@@ -67,7 +67,7 @@ class SinglyLinkedList:
         # We want to delelte a node that is btwn two other nodes, all we have to
         # do is make the prev node to the successor of its next node that is to
         # be deleted.
-        current = self.tail # We use current var in order to find our target data
+        current = self.tail  # We use current var in order to find our target data
         prev = self.tail  # Two pointers as starting point. Current and previous
         while current is not None:  # While there is data in the current node
 
@@ -114,14 +114,61 @@ def deleteFrom(tgt_node):
     return "Node is deleted!"
 
 
-tail = Node(1)
+def combine_partition(List):
+    head, tail = None, None
+    for each_elem in List:
+        node = each_elem
+        if head:
+            head.next = node
+            head = node
+        else:
+            tail = node
+            head = node
+
+    return tail, head
+
+
+def partition(partition_number, original_tail):
+    current_node = original_tail
+    left_part, right_part = [], []
+    while current_node:
+        if current_node.value < partition_number:
+            left_part.append(current_node)
+        elif current_node.value >= partition_number:
+            right_part.append(current_node)
+
+        current_node = current_node.next
+
+    left_tail, left_head = combine_partition(left_part)
+    right_tail, right_head = combine_partition(right_part)
+
+
+    left_head = right_tail
+    right_tail.next.next.next = None
+
+    return left_tail
+
+tail = Node(3)
 n1 = Node(5)
-n2 = Node(9)
-n3 = Node(12)
+n2 = Node(8)
+n3 = Node(5)
+n4 = Node(10)
+n5 = Node(2)
+n6 = Node(1)
 
 tail.next = n1
 n1.next = n2
 n2.next = n3
+n3.next = n4
+n4.next = n5
+n5.next = n6
+
+new_tail = partition(5, tail)
+
+
+while new_tail:
+    print(new_tail.value)
+    new_tail= new_tail.next
 
 tgt_node = tail.next.next
 
