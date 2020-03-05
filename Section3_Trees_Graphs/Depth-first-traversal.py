@@ -5,20 +5,36 @@ class Node:
         self.left_child = None
 
 
-n1 = Node("root node")
-n2 = Node("left child node")
-n3 = Node("right child node")
-n4 = Node("left grandchild node")
-n1.left_child = n2
-n1.right_child = n3
+root = Node(3)
+n2 = Node(5)
+n3 = Node(1)
+n4 = Node(6)
+n5 = Node(2)
+n6 = Node(7)
+n7 = Node(4)
+n8 = Node(0)
+n9 = Node(8)
+
+
+root.left_child = n2
+root.right_child = n3
+
 n2.left_child = n4
+n2.right_child = n5
 
-current = n1
-while current:
-    print(current.data)
-    current = current.left_child
 
-print("\n")
+n5.left_child = n6
+n5.right_child = n7
+
+n3.left_child = n8
+n3.right_child = n9
+
+# current = root
+# while current:
+#     print(current.data)
+#     current = current.right_child
+#
+# print("\n")
 
 
 def preorder(root_node):
@@ -48,8 +64,4 @@ def postorder(root_node):
     print(current.data)
 
 
-inorder(n1)
-print("\n")
-preorder(n1)
-print("\n")
-postorder(n1)
+print(inorder(root.left_child))
