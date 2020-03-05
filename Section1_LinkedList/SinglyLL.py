@@ -71,10 +71,11 @@ class SinglyLinkedList:
         prev = self.tail  # Two pointers as starting point. Current and previous
         while current is not None:  # While there is data in the current node
 
-            if current.data == tgt_data:  # if we found our target from our current node
+            if current.value == tgt_data:  # if we found our target from our current node
                 if current == self.tail:  # if the current node is our beginning tail node (First node)
                     self.tail = current.next  # then we want our tail to be the next preceding node as our tail instead
                 else:
+                 
                     prev.next = current.next  # If its not, our previous node will point to the node of the current node
                 self.size -= 1  # decrement our LL size
                 return  # Return none
@@ -115,8 +116,16 @@ def deleteNode(tgt_node):
 
 
 LinkedList = SinglyLinkedList()
-for i in range(100):
+for i in range(5):
     LinkedList.append(i)
 
 print("Singly Linked List Length is: ", LinkedList.length())
-kthElement = kthToLast(LinkedList.tail, 1)
+
+LinkedList.delete(0)
+LinkedList.delete(4)
+LinkedList.delete(3)
+for each_elem in LinkedList.iter():
+    print(each_elem)
+
+
+print("Singly Linked List Length is: ", LinkedList.length())
