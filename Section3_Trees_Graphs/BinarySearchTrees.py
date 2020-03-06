@@ -195,3 +195,16 @@ class Tree:
     Worsr: O(n)
     '''
 
+# Lets finallt write some code to insert nodes in our tree
+tree = Tree()
+tree.insert(5)
+tree.insert(10)
+tree.insert(80)
+tree.insert(7)
+tree.insert(3)
+
+for i in range(1, 10):
+    found = tree.search(i)
+    print("{}: {}".format(i, found))
+
+print(tree.find_max().data, tree.find_min().data)
