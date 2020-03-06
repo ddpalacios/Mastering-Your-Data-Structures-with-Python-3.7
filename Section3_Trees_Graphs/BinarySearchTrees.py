@@ -57,7 +57,6 @@ class Tree:
     So we have to ensure that the property if the BST satisfies whenever we insert an item
     in the tree.
     '''
-
     def insert(self, data):
         node = Node(data)
         if self.root_node is None:  # First check if we have a root
@@ -99,7 +98,6 @@ class Tree:
                 
                 So lets take a look on how we can handle these scenarios in code
                 '''
-
     # Since our node class does not have a reference to a parent. We need a helper method to search and return the node
     # with its parent node
     def get_node_with_parent(self, data):
@@ -120,8 +118,6 @@ class Tree:
                 current = current.right_child
 
         return parent, current
-
-
     def remove(self, data):
         parent, node = self.get_node_with_parent(data)
         if parent is None and node is None:
@@ -170,5 +166,32 @@ class Tree:
         while leftmost_node.left_child:
             parent_of_leftmost_node = leftmost_node
             leftmost_node = leftmost_node.left_child
-        
+
         node.data = leftmost_node.data
+
+    # Now lets implement a method for searching for a specific node
+    # its pretty simple to follow
+    def search(self, data):
+        current = self.root_node
+        while True:
+            if current is None:
+                return None
+            elif current.data is data:
+                return data
+
+            elif current.data > data:
+                current = current.left_child
+            else:
+                current = current.right_child
+
+
+    '''
+    Summary:
+    Linked list are efficient for insertion and deletion
+    BUT SLOW FOR SEARCHING O(N)
+    
+    BST are efficient for searching, insertion, and deletion
+    Best case is O(log n)
+    Worsr: O(n)
+    '''
+
