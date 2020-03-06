@@ -89,3 +89,86 @@ class Tree:
                         return
 
                 # Insertion takes O(h) where h is the height of the tree
+
+                # Now we are going to look at deletion of nodes
+                # There are three scenarios for what the node might have:
+                '''
+                1) No Children -> directly remove it
+                2) One Child -> Swap value of that node with its child, and then delete the node
+                3) Two children -> We find the in-order successor or predecessor, swap the val with it and delete that node
+                
+                So lets take a look on how we can handle these scenarios in code
+                '''
+
+    # Since our node class does not have a reference to a parent. We need a helper method to search and return the node
+    # with its parent node
+    def get_node_with_parent(self, data):
+        parent = None
+        current = self.root_node
+        if current is None:
+            return parent, None
+
+        while True:
+            if current.data == data:
+                return parent, current
+
+            elif current.data > data:
+                parent = current
+                current = current.left_child
+            else:
+                parent = current
+                current = current.right_child
+
+        return parent, current
+
+
+    def remove(self, data):
+        parent, node = self.get_node_with_parent(data)
+        if parent is None and node is None:
+            return False
+        # Get childrent count for each scenerio
+        childeren_count = 0
+
+        # it is important to know the # of childrent that the node has
+        # in order to delete it properly
+
+        if node.left_child and node.right_child:
+            childeren_count = 2
+        elif node.left_child is None and node.right_child is None:
+            childeren_count = 0
+        else:
+            childeren_count = 1
+
+        # Once we do know the number of children, we conduct our if statements
+        if childeren_count == 0:
+            if parent:
+                if parent.right_child is node:
+                    parent.right_child = None
+                else:
+                    parent.left_child = None
+            else:
+                self.root_node = None
+
+        # Next scenerio
+        elif childeren_count == 1:
+            next_node = None
+            if node.left_child:
+                next_node = node.left_child
+            else:
+                next_node = node.right_child
+            if parent:
+                if parent.left_child is node:
+                    parent.left_child = next_node
+                else:
+                    parent.right_child = next_node
+            else:
+                self.root_node = next_node
+
+        # For two children ...
+        parent_of_leftmost_node = node
+        leftmost_node = node.right_child
+        while leftmost_node.left_child:
+            parent_of_leftmost_node = leftmost_node
+            leftmost_node = leftmost_node.left_child
+        
+        node.data = leftmost_node.data
