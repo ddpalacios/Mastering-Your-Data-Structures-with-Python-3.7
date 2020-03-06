@@ -207,4 +207,6 @@ for i in range(1, 10):
     found = tree.search(i)
     print("{}: {}".format(i, found))
 
-print(tree.find_max().data, tree.find_min().data)
+
+
+print("MAX: {}\nMIN: {}\n".format(tree.find_max().data, tree.find_min().data))

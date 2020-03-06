@@ -36,7 +36,7 @@ n2.left_child = n4
 # Could we possibly traverse through the entire tree?
 current = n1
 while current:
-    # print(current.data)
+    print(current.data)
     current = current.left_child
 
 # This is where tree traveral comes into place.

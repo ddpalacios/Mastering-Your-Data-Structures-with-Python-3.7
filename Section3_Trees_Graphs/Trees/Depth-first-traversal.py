@@ -46,13 +46,15 @@ def preorder(root_node):
     preorder(current.right_child)
 
 
-def inorder(root_node):
+def inorder(root_node, data):
     current = root_node
     if current is None:
         return
-    inorder(current.left_child)
+    inorder(current.left_child,data)
+    if current.data == data:
+        print("found",current.data)
     print(current.data)
-    inorder(current.right_child)
+    inorder(current.right_child, data)
 
 
 def postorder(root_node):
@@ -64,4 +66,4 @@ def postorder(root_node):
     print(current.data)
 
 
-print(inorder(root.left_child))
+inorder(root, 0)
