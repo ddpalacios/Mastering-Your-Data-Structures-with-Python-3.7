@@ -49,6 +49,67 @@ while current:
 - pre-order
 - post order
 '''
+class Tree:
+    def __init__(self):
+        self.root_node = None  # That is all that is needed
+
+
+    def insert(self, data):
+        node = Node(data)
+        if self.root_node is None:  # First check if we have a root
+            self.root_node = node
+        else:
+            # We need to keep track of the curr node. as well as the parent.
+            # We use a current variable to be used for that purpose
+            current = self.root_node
+            parent = None
+            while True:
+                parent = current
+                if not parent.left_child:
+                    parent.left_child = node
+                if not parent.right_child:
+                    parent.right_child = node
+                if parent is None:
+                    return
+
+
+
+class LinkedList:
+    def insert(self, data):
+        pass
+
+
+
+
+from collections import deque
+
+def LL_from_depth(root):
+    traversal_queue = deque([root])
+    while len(traversal_queue) > 0:
+        list_of_nodes = LinkedList()
+        node = traversal_queue.popleft()
+        if traversal_queue is None: # Store root in linked list [1] -> pop() -> []
+            list_of_nodes.insert(node)
+
+        else:
+            list_of_nodes.insert(node)
+            node2 = traversal_queue.popleft()
+            list_of_nodes.insert(node2)
+            if node2.left_child:
+                traversal_queue.append(node2.left_child)
+            if node2.right_child:
+                traversal_queue.append(node2.right_child)
+
+
+
+
+        if node.left_child:
+            traversal_queue.append(node.left_child)
+        if node.right_child:
+            traversal_queue.append(node.right_child)
+
+
+
 
 
 

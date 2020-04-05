@@ -31,4 +31,4 @@ def breadth_first_traversal(root_node):
     return list_of_nodes
 
 
-print(breadth_first_traversal(n1))
+sorted_array = [i for i in 500]

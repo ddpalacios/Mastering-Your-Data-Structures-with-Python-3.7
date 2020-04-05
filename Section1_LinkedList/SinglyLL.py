@@ -142,11 +142,11 @@ def partition(partition_number, original_tail):
     left_tail, left_head = combine_partition(left_part)
     right_tail, right_head = combine_partition(right_part)
 
-
     left_head = right_tail
     right_tail.next.next.next = None
 
     return left_tail
+
 
 tail = Node(3)
 n1 = Node(5)
@@ -165,10 +165,9 @@ n5.next = n6
 
 new_tail = partition(5, tail)
 
-
 while new_tail:
     print(new_tail.value)
-    new_tail= new_tail.next
+    new_tail = new_tail.next
 
 tgt_node = tail.next.next
 
@@ -190,5 +189,81 @@ LinkedList.delete(3)
 for each_elem in LinkedList.iter():
     print(each_elem)
 
-
 print("Singly Linked List Length is: ", LinkedList.length())
+
+
+class NodeStack:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+class Stack:
+    def __init__(self):
+        self.top = None
+        self.size = 0
+
+    def push(self, data):
+        node = NodeStack(data)
+        if self.top:
+            node.next = self.top
+            self.top = node
+        else:
+            self.top = node
+        self.size += 1
+
+    def pop(self):
+        if self.top:
+            data = self.top.data
+            self.size -= 1
+            if self.top.next:
+                self.top = self.top.next
+            else:
+                self.top = None
+            return data
+        else:
+            return None
+
+
+# Check if a linked list is a palanindrome
+def check(linkedlist):
+    stack = Stack()
+    size = linkedlist.size
+    tail = linkedlist.tail
+    res1, res2 = "", ""
+    for first_half in range(size // 2):
+        res1 = res1 + str(tail.value)
+        tail = tail.next
+
+    for second_half in range(size // 2):
+        tail = tail.next
+        stack.push(str(tail.value))
+
+    for i in range(stack.size):
+        val = stack.pop()
+        res2 = res2 + val
+
+    print(res1, '\t\t', res2)
+    if res1 == res2:
+        return True
+    else:
+        return False
+
+
+if __name__ == "__main__":
+    linkedlist = SingleLinkedList()
+    linkedlist.append(1)
+    linkedlist.append(2)
+    linkedlist.append(3)
+    linkedlist.append(90)
+    linkedlist.append(90)
+    linkedlist.append(4)
+    linkedlist.append(5)
+    linkedlist.append(5)
+    linkedlist.append(5)
+    linkedlist.append(4)
+    linkedlist.append(3)
+    linkedlist.append(2)
+    linkedlist.append(1)
+
+    print(check(linkedlist))
