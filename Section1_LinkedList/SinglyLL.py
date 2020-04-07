@@ -225,7 +225,7 @@ class Stack:
             return None
 
 
-# Check if a linked list is a palanindrome
+# Check if a linked list is a palindrome
 def check(linkedlist):
     stack = Stack()
     size = linkedlist.size
