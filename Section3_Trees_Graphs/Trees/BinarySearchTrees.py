@@ -248,6 +248,8 @@ class BinaryTree:
                     if current is None:
                         parent.right_child = node
                         return
+
+
 from time import sleep
 def check(root):
     parent_val = root.data
